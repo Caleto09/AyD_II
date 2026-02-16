@@ -11,7 +11,7 @@ struct Nodo{
     Nodo *izq;
 };
 
-// --- Prototipos ---
+// Prototipos
 void menu();
 Nodo *crearNodo(int);
 void insertarNodo(Nodo *&, int);
@@ -143,7 +143,7 @@ void mostrarArbol(Nodo *arbol, int cont){
     }
 }
 
-// 1. Buscar Nodo
+// Función para buscar nodo
 bool buscarNodo(Nodo *arbol, int n){
     if(arbol == NULL){
         return false;
@@ -159,7 +159,7 @@ bool buscarNodo(Nodo *arbol, int n){
     }
 }
 
-// 2. Recorridos
+// Funciones para recorridos del árbol
 void preOrden(Nodo *arbol){ // Raíz - Izq - Der
     if(arbol == NULL) return;
     std::cout << arbol->dato << " - ";
@@ -181,7 +181,7 @@ void postOrden(Nodo *arbol){ // Izq - Der - Raíz
     std::cout << arbol->dato << " - ";
 }
 
-// 3. Serializar (Guardar a CSV)
+// Función para serializar (guardar a CSV)
 // Usamos Pre-Orden para guardar porque facilita la reconstrucción
 void guardarArbol(Nodo *arbol, std::ofstream &archivo){
     if(arbol == NULL) return;
@@ -205,13 +205,13 @@ void guardarCSV(Nodo *arbol){
     std::cout << "\nArbol guardado exitosamente en 'arbol.csv'";
 }
 
-// 4. Deserializar (Cargar de CSV)
+// Función para deserializar (cargar de CSV)
 void cargarCSV(Nodo *&arbol){
     std::ifstream archivo;
     archivo.open("arbol.csv", std::ios::in);
 
     if(archivo.fail()){
-        std::cout << "No se encontro el archivo 'arbol.csv'. Asegurate de haber guardado uno primero.";
+        std::cout << "No se encontro el archivo 'arbol.csv'";
         return;
     }
 
