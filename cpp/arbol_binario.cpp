@@ -4,6 +4,8 @@
 #include<fstream>  // Para manejo de archivos
 #include<string>   // Para leer cadenas
 #include<sstream>  // Para partir cadenas por comas
+#include<queue>
+#include <algorithm>
 
 struct Nodo{
     int dato;
@@ -159,6 +161,16 @@ bool buscarNodo(Nodo *arbol, int n){
     }
 }
 
+bool searchNode(Node *arbol, int key){
+    bool present = false;
+
+    while (root != nulltpr){
+        
+    }
+    
+}
+
+
 // Funciones para recorridos del árbol
 void preOrden(Nodo *arbol){ // Raíz - Izq - Der
     if(arbol == NULL) return;
@@ -233,3 +245,88 @@ void cargarCSV(Nodo *&arbol){
     archivo.close();
     std::cout << "\nArbol cargado correctamente desde el archivo.";
 }
+
+queue<Node> q
+q.push(node)
+while (!q.empty)
+{
+    current q.front -> q.pop
+    print(current -> value)
+    if (current ->left!=null)
+    {
+        q.push(current -> left)
+    }
+    if (current -> right != NULL)
+    {
+        q.push(current ->right)
+    }
+}
+
+void levelOrderTraversal(Node* root) { //distancia
+    if (root == nullptr) {
+        return;
+    }
+    queue<Node*> q;
+
+    q.push(root);
+
+    while (!q.empty()) {
+        Node* current = q.front();
+        q.pop();                   
+
+        // Imprimir
+        cout << current->value << " ";
+
+        // Meter hijos a la cola
+        if (current->left != nullptr) {
+            q.push(current->left);
+        }
+
+        if (current->right != nullptr) {
+            q.push(current->right);
+        }
+    }
+}
+
+using namespace std;
+
+int getHeight(Node* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    // Calculamos la altura de cada subárbol y sumamos 1 (la raíz)
+    int leftHeight = getHeight(root->left);
+    int rightHeight = getHeight(root->right);
+    
+    return max(leftHeight, rightHeight) + 1;
+}
+
+// 2. Función recursiva para imprimir los nodos de un nivel específico
+void printGivenLevel(Node* root, int level) {
+    if (root == nullptr) {
+        return;
+    }
+    
+    // Si llegamos al nivel objetivo, imprimimos el valor
+    if (level == 1) {
+        cout << root->value << " ";
+    } 
+    // Si aún no llegamos, bajamos un nivel hacia los hijos
+    else if (level > 1) {
+        printGivenLevel(root->left, level - 1);
+        printGivenLevel(root->right, level - 1);
+    }
+}
+
+// 3. Función principal que unifica todo
+void levelOrderTraversal(Node* root) {
+    int height = getHeight(root);
+    
+    // Llamamos a la función recursiva para cada nivel del árbol
+    for (int i = 1; i <= height; i++) {
+        printGivenLevel(root, i);
+    }
+}
+
+//tarea: serializar y deserializar
+//tarea: hacer el while de ciclo a una funcion recursiva, funcion levelordertraversal
